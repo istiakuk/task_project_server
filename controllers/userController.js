@@ -46,7 +46,22 @@ exports.getAllUsers = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-
+exports.getUserByUserId = async (req, res, next) => {
+  try {
+  
+    isAdmin(req, res, async () => {
+      const user = await User.findById(req.params.userId);
+     
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(user);
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 exports.deleteUser = async (req, res) => {
   try {

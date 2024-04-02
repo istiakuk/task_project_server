@@ -7,7 +7,7 @@
 
  .env 
 
-PORT=5000
+PORT=
 MONGODB_URI= 
 
 EMAIL_SERVICE=gmail
